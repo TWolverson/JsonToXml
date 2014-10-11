@@ -1,5 +1,8 @@
 ﻿{ 
-	"foo" : "bar", 
+	"foo" : "bar",
+	"really?" : true,
+	"nowai" : 42.0, 
+	"today" : "2014-10-11",
 	"baz" : { "quux" : "bar" },
-	"things" : [ { "foo" : "bar" } ] 
+	"things" : [ { "foo" : "bar" } ]
 }

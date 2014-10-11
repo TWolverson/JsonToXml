@@ -1,1 +1,7 @@
-﻿<?xml version='1.0' encoding='utf-8'?><o foo="bar"><baz quux="bar" /><a><things foo="bar" /></a></o>
+﻿<?xml version='1.0' encoding='utf-8'?>
+<o foo="bar" really_x003F_="true" nowai="42" today="2014-10-11">
+  <baz quux="bar" />
+  <things>
+    <o foo="bar" />
+  </things>
+</o>

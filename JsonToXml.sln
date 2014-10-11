@@ -5,6 +5,8 @@ VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JsonToXml", "JsonToXml\JsonToXml.csproj", "{10297405-C9CC-449C-85A4-94FADD276D8E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JsonToXml.Tests", "JsonToXml.Tests\JsonToXml.Tests.csproj", "{E9CD9A64-A34E-4D0D-8C67-A4E48B3144F9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{10297405-C9CC-449C-85A4-94FADD276D8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{10297405-C9CC-449C-85A4-94FADD276D8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{10297405-C9CC-449C-85A4-94FADD276D8E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E9CD9A64-A34E-4D0D-8C67-A4E48B3144F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E9CD9A64-A34E-4D0D-8C67-A4E48B3144F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E9CD9A64-A34E-4D0D-8C67-A4E48B3144F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E9CD9A64-A34E-4D0D-8C67-A4E48B3144F9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

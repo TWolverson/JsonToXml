@@ -19,7 +19,6 @@ namespace JsonToXml
                 {
                     var jReader = new JsonTextReader(reader);
                     XmlWriter writer = null;
-                    var queue = new Queue<Action<string>>();
                     var unknownActionQueue = new Queue<Action<Action<string>>>();
                     unknownActionQueue.Enqueue(a => a("o"));
                     while (jReader.Read())
@@ -32,7 +31,6 @@ namespace JsonToXml
                         switch (jReader.TokenType)
                         {
                             case JsonToken.StartObject:
-                                //writer.WriteStartElement("o");
                                 unknownActionQueue.Dequeue()((s) => writer.WriteStartElement(s));
                                 break;
                             case JsonToken.PropertyName:
@@ -44,11 +42,24 @@ namespace JsonToXml
                                 var propertyValue = (string)jReader.Value;
                                 unknownActionQueue.Dequeue()((s) => writer.WriteAttributeString(s, propertyValue));
                                 break;
+                            case JsonToken.Boolean:
+                                unknownActionQueue.Dequeue()((s) => writer.WriteAttributeString(XmlConvert.EncodeName(s), XmlConvert.ToString((bool)jReader.Value)));
+                                break;
+                            case JsonToken.Float:
+                                unknownActionQueue.Dequeue()((s) => writer.WriteAttributeString(XmlConvert.EncodeName(s), XmlConvert.ToString((double)jReader.Value)));
+                                break;
+                            case JsonToken.Date:
+                                unknownActionQueue.Dequeue()((s) => writer.WriteAttributeString(XmlConvert.EncodeName(s), XmlConvert.ToString((DateTime)jReader.Value)));
+                                break;
+                            case JsonToken.Integer:
+                                unknownActionQueue.Dequeue()((s) => writer.WriteAttributeString(XmlConvert.EncodeName(s), XmlConvert.ToString((int)jReader.Value)));
+                                break;
                             case JsonToken.EndObject:
                                 writer.WriteEndElement();
                                 break;
                             case JsonToken.StartArray:
-                                writer.WriteStartElement("a");
+                                unknownActionQueue.Dequeue()((s) => writer.WriteStartElement(s));
+                                unknownActionQueue.Enqueue(a => a("o"));
                                 break;
                             case JsonToken.EndArray:
                                 writer.WriteEndElement();

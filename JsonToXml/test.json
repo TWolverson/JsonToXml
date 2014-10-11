@@ -1,0 +1,5 @@
+﻿{ 
+	"foo" : "bar", 
+	"baz" : { "quux" : "bar" },
+	"things" : [ { "foo" : "bar" } ] 
+}

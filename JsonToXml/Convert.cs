@@ -11,21 +11,26 @@ namespace JsonToXml
 {
     public static class Convert
     {
-        public Stream ToXml(Stream jsonStream)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="jsonStream">The stream to read the json from</param>
+        /// <param name="xmlStream">The stream to write the xml to</param>
+        public static void ToXml(Stream jsonStream, Stream xmlStream)
         {
+            if (!xmlStream.CanWrite)
+            {
+                throw new ArgumentException("Cannot write to output stream");
+            }
+            using (XmlWriter writer = XmlWriter.Create(xmlStream))
             using (var reader = new StreamReader(jsonStream))
             {
                 var jReader = new JsonTextReader(reader);
-                XmlWriter writer = null;
+                writer.WriteProcessingInstruction("xml", "version='1.0' encoding='utf-8'"); ;
                 var unknownActionQueue = new Queue<Action<Action<string>>>();
                 unknownActionQueue.Enqueue(a => a("o"));
                 while (jReader.Read())
                 {
-                    if (writer == null)
-                    {
-                        writer = XmlWriter.Create(new FileStream(@"..\..\test.xml", FileMode.Create));
-                        writer.WriteProcessingInstruction("xml", "version='1.0' encoding='utf-8'");
-                    }
                     switch (jReader.TokenType)
                     {
                         case JsonToken.StartObject:
@@ -65,13 +70,9 @@ namespace JsonToXml
                         default:
                             break;
                     }
+
                 }
-                writer.Close();
-                writer.Dispose();
-
             }
-
-            return null // d'oh!
         }
     }
 }

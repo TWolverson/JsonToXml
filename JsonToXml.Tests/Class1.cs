@@ -11,7 +11,7 @@ namespace JsonToXml.Tests
     [TestFixture]
     public class when_parsing_dates
     {
-        [TestCase]
+        [Test]
         public void then_ISO_8601_date_only_is_converted()
         {
             string json = "{\"date\":\"2014-01-01\"}";
